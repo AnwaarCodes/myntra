@@ -1,46 +1,51 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
-const BagSummary = () => {
-
-
-    const bagSummary = {
-        totalItem: 3, 
-        totalMRP: 345,
-        totalDiscount:999,
-        finalPayment:1346,
-    }
-
+const BagSummary = ({ cartItems }) => {
+  const totalItem = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  const totalMRP = cartItems.reduce(
+    (acc, item) => acc + item.product.price * item.quantity,
+    0
+  );
+  const discount = Math.floor(totalMRP * 0.2); // 20% fake discount
+  const convenienceFee = 99;
+  const finalPayment = totalMRP - discount + convenienceFee;
 
   return (
-    <>
-     <div className="bag-summary">
-    
-     <div class="bag-details-container">
-    <div class="price-header">PRICE DETAILS ({bagSummary.totalItem} Items) </div>
-    <div class="price-item">
-      <span class="price-item-tag">Total MRP</span>
-      <span class="price-item-value">₹{bagSummary.totalMRP}</span>
-    </div>
-    <div class="price-item">
-      <span class="price-item-tag">Discount on MRP</span>
-      <span class="price-item-value priceDetail-base-discount">-₹{bagSummary.totalDiscount}</span>
-    </div>
-    <div class="price-item">
-      <span class="price-item-tag">Convenience Fee</span>
-      <span class="price-item-value">₹99</span>
-    </div>
-    <hr/>
-    <div class="price-footer">
-      <span class="price-item-tag">Total Amount</span>
-      <span class="price-item-value">₹{bagSummary.finalPayment}</span>
-    </div>
-  </div>
-  <button class="btn-place-order">
-    <div class="css-xjhrni">PLACE ORDER</div>
-  </button>
-  </div>
-    </>
-  )
-}
+    <div className="bag-summary">
+      <div className="bag-summary-title">
+        PRICE DETAILS ({totalItem} item{totalItem !== 1 ? "s" : ""})
+      </div>
 
-export default BagSummary
+      <div className="bag-summary-row">
+        <span>Total MRP</span>
+        <span>₹{totalMRP}</span>
+      </div>
+
+      <div className="bag-summary-row discount">
+        <span>Discount</span>
+        <span>-₹{discount}</span>
+      </div>
+
+      <div className="bag-summary-row">
+        <span>Convenience Fee</span>
+        <span>₹{convenienceFee}</span>
+      </div>
+
+      <hr style={{ margin: "16px 0" }} />
+
+      <div className="bag-summary-row bag-summary-total">
+        <span>Total Amount</span>
+        <span>₹{finalPayment}</span>
+      </div>
+
+      <div className="mt-6">
+        <Link to="/placeorder">
+          <button className="bag-summary-btn">Place Order</button>
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default BagSummary;

@@ -1,0 +1,125 @@
+@import url("../adminOrder/AdminOrders.css");
+
+/* ===== General Container ===== */
+.admin-sales-container {
+  padding: 2rem;
+  background-color: #0f0f0f;
+  min-height: 100vh;
+}
+
+/* ===== Section Heading ===== */
+.admin-heading {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #5edfff;
+  text-align: center;
+}
+
+/* ===== Summary Cards ===== */
+.sales-summary {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.summary-card {
+  background-color: #1e1e1e;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+  min-width: 200px;
+  transition: transform 0.3s ease;
+}
+
+.summary-card:hover {
+  transform: scale(1.05);
+}
+
+.summary-card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  color: #00c6ff;
+}
+
+/* ===== Chart Container ===== */
+.chart-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+  background-color: #1e1e1e;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.03);
+}
+
+.chart-container canvas {
+  background-color: transparent;
+}
+
+/* ===== Table ===== */
+.table-title {
+  margin-top: 2rem;
+  text-align: center;
+  color: #cec2c2;
+  font-size: 1.4rem;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: #111;
+  color: #eee;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #444;
+}
+
+.admin-table th {
+  background: #1e1e1e;
+  color: #f0f0f0;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.admin-table tbody tr:hover {
+  background-color: #222;
+  cursor: pointer;
+}
+
+.admin-table td:nth-child(2) {
+  font-weight: bold;
+  color: #5edfff;
+}
+
+/* ===== Responsive Layout ===== */
+@media (max-width: 768px) {
+  .sales-summary {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .summary-card {
+    width: 90%;
+  }
+
+  .chart-container {
+    padding: 0.8rem;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+}

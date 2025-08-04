@@ -1,9 +1,9 @@
 [
   {
-    "name": "Black Hoodie",
+    "name": "White Hoodie",
     "description": "Premium cotton hoodie for winters",
     "price": 1799,
-    "image": "https://i.imgur.com/1.jpg",
+    "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=300&q=80",
     "category": "Clothing",
     "stock": 10
   },
@@ -11,7 +11,7 @@
     "name": "Wireless Headphones",
     "description": "Noise-cancelling over-ear headphones",
     "price": 4999,
-    "image": "https://i.imgur.com/2.jpg",
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=300&q=80",
     "category": "Electronics",
     "stock": 25
   },
@@ -19,7 +19,31 @@
     "name": "Leather Wallet",
     "description": "Men's slim leather wallet",
     "price": 899,
-    "image": "https://i.imgur.com/3.jpg",
+    "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=300&q=80",
+    "category": "Accessories",
+    "stock": 20
+  },
+  {
+    "name": "Black Hoodie",
+    "description": "Premium cotton hoodie for winters",
+    "price": 1799,
+    "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3",
+    "category": "Clothing",
+    "stock": 10
+  },
+  {
+    "name": "Wireless Headphones",
+    "description": "Noise-cancelling over-ear headphones",
+    "price": 4999,
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3",
+    "category": "Electronics",
+    "stock": 25
+  },
+  {
+    "name": "Leather Wallet",
+    "description": "Men's slim leather wallet",
+    "price": 899,
+    "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3",
     "category": "Accessories",
     "stock": 20
   },
@@ -27,7 +51,7 @@
     "name": "Analog Watch",
     "description": "Elegant wristwatch for men",
     "price": 1999,
-    "image": "https://i.imgur.com/4.jpg",
+    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3",
     "category": "Accessories",
     "stock": 15
   },
@@ -35,7 +59,7 @@
     "name": "Bluetooth Speaker",
     "description": "Portable wireless speaker with deep bass",
     "price": 2499,
-    "image": "https://i.imgur.com/5.jpg",
+    "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3",
     "category": "Electronics",
     "stock": 18
   },
@@ -43,7 +67,7 @@
     "name": "Red T-Shirt",
     "description": "Casual red t-shirt for daily wear",
     "price": 699,
-    "image": "https://i.imgur.com/6.jpg",
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3",
     "category": "Clothing",
     "stock": 30
   },
@@ -51,7 +75,7 @@
     "name": "Sunglasses",
     "description": "UV protection stylish sunglasses",
     "price": 1299,
-    "image": "https://i.imgur.com/7.jpg",
+    "image": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3",
     "category": "Accessories",
     "stock": 22
   },
@@ -59,7 +83,7 @@
     "name": "Smartwatch",
     "description": "Fitness smartwatch with heart rate monitor",
     "price": 3299,
-    "image": "https://i.imgur.com/8.jpg",
+    "image": "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3",
     "category": "Electronics",
     "stock": 12
   },
@@ -67,7 +91,7 @@
     "name": "Blue Jeans",
     "description": "Stretchable denim jeans for men",
     "price": 1499,
-    "image": "https://i.imgur.com/9.jpg",
+    "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3",
     "category": "Clothing",
     "stock": 27
   },
@@ -75,7 +99,7 @@
     "name": "Backpack",
     "description": "Durable travel backpack with laptop compartment",
     "price": 1899,
-    "image": "https://i.imgur.com/10.jpg",
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3",
     "category": "Accessories",
     "stock": 14
   },
@@ -83,7 +107,7 @@
     "name": "Beard Trimmer",
     "description": "Rechargeable trimmer with multiple settings",
     "price": 1699,
-    "image": "https://i.imgur.com/11.jpg",
+    "image": "https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3",
     "category": "Electronics",
     "stock": 19
   },
@@ -91,7 +115,7 @@
     "name": "White Sneakers",
     "description": "Comfortable white sneakers for daily use",
     "price": 2999,
-    "image": "https://i.imgur.com/12.jpg",
+    "image": "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3",
     "category": "Footwear",
     "stock": 20
   },
@@ -99,7 +123,7 @@
     "name": "Wireless Mouse",
     "description": "Ergonomic mouse with fast scroll",
     "price": 699,
-    "image": "https://i.imgur.com/13.jpg",
+    "image": "https://images.unsplash.com/photo-1527814050087-3793815479db?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3",
     "category": "Electronics",
     "stock": 50
   },
@@ -107,7 +131,7 @@
     "name": "Denim Jacket",
     "description": "Trendy denim jacket for casual wear",
     "price": 2199,
-    "image": "https://i.imgur.com/14.jpg",
+    "image": "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3",
     "category": "Clothing",
     "stock": 16
   },
@@ -115,7 +139,7 @@
     "name": "LED Desk Lamp",
     "description": "Adjustable lamp with touch control",
     "price": 1199,
-    "image": "https://i.imgur.com/15.jpg",
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3",
     "category": "Electronics",
     "stock": 11
   },
@@ -123,7 +147,7 @@
     "name": "Brown Loafers",
     "description": "Elegant leather loafers for office wear",
     "price": 2699,
-    "image": "https://i.imgur.com/16.jpg",
+    "image": "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3",
     "category": "Footwear",
     "stock": 10
   },
@@ -131,7 +155,7 @@
     "name": "Lip Balm Pack",
     "description": "Set of 3 organic lip balms",
     "price": 499,
-    "image": "https://i.imgur.com/17.jpg",
+    "image": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3",
     "category": "Beauty",
     "stock": 34
   },
@@ -139,7 +163,7 @@
     "name": "Bluetooth Earbuds",
     "description": "Wireless earbuds with charging case",
     "price": 3799,
-    "image": "https://i.imgur.com/18.jpg",
+    "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3",
     "category": "Electronics",
     "stock": 21
   },
@@ -147,7 +171,7 @@
     "name": "Gray Sweatpants",
     "description": "Soft and breathable joggers",
     "price": 1099,
-    "image": "https://i.imgur.com/19.jpg",
+    "image": "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3",
     "category": "Clothing",
     "stock": 23
   },
@@ -155,7 +179,7 @@
     "name": "Perfume Set",
     "description": "Fragrance combo pack",
     "price": 2499,
-    "image": "https://i.imgur.com/20.jpg",
+    "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3",
     "category": "Beauty",
     "stock": 17
   }

@@ -4,84 +4,111 @@ import { fetchStatusActions } from "../store/fetchStatusSlice";
 import HomeItem from "./HomeItem";
 import Header from "./Header";
 import Sidebar from "../Sidebar/Sidebar";
-import ProductInfoPage from "../routes/ProductInfoPage";
 import { getAllProducts } from "../api/productAPI";
+import Masonry from "react-masonry-css";
+import axios from "axios";
 
 const FetchItems = () => {
-  const [items, setItems] = useState([]); // All fetched items
-  const [filteredProducts, setFilteredProducts] = useState([]); // Filtered items based on query
+  const [items, setItems] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [isFiltered, setIsFiltered] = useState(false);
   const [cartCount, setCartCount] = useState(0);
-  const [query, setQuery] = useState(""); // Search query
+  const [query, setQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  const fetchStatus = useSelector((state) => state.fetchStatus); // Fetch status from Redux
+  const fetchStatus = useSelector((state) => state.fetchStatus);
   const dispatch = useDispatch();
 
-  const categories = ["Clothing", "Women", "Electronics", "jewelery"];
-  const NavCategories = ["Fashion", "Electronics", "Home", "Beauty"];
+  const categories = ["Clothing", "Beauty", "Electronics", "Accessories"];
 
-  const handleInputChange = (e) => setQuery(e.target.value);
-  const handleCategoryChange = (e) => setSelectedCategory(e.target.value);
+  const handleInputChange = async (e) => {
+    const value = e.target.value;
+    setQuery(value);
 
-  const handleAddToCart = (item) => {
-    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    if (!cartItems.some((cartItem) => cartItem.id === item.id)) {
-      cartItems.push(item);
-      localStorage.setItem("cartItems", JSON.stringify(cartItems));
-      setCartCount(cartCount + 1);
+    if (value.trim() === "") {
+      // 🔄 Refetch all products from backend
+      try {
+        const res = await axios.get("http://localhost:5000/api/products");
+        setItems(res.data);
+        setIsFiltered(false);
+        setFilteredProducts(res.data);
+      } catch (err) {
+        console.error("Error restoring all products:", err);
+      }
+      return;
+    }
+
+    try {
+      const res = await axios.get(
+        `http://localhost:5000/api/products?search=${encodeURIComponent(value)}`
+      );
+
+      if (Array.isArray(res.data)) {
+        setFilteredProducts(res.data);
+      } else {
+        setFilteredProducts([]);
+      }
+      console.log("Response received:", res.data);
+
+      setIsFiltered(true);
+    } catch (err) {
+      console.error("Search failed", err);
+      setFilteredProducts([]);
     }
   };
+
+ const handleCategoryChange = async (selected) => {
+  // const selected = e.target.value;
+  setSelectedCategory(selected);
+
+  // ❌ Agar empty hai, to saare products dikhao
+  if (selected === "") {
+    setIsFiltered(false);
+    setFilteredProducts(items);
+    return;
+  }
+
+  // ✅ Backend se filter karo
+  try {
+    const res = await axios.get(`http://localhost:5000/api/products?search=${encodeURIComponent(selected)}`);
+    setFilteredProducts(res.data);
+    setIsFiltered(true);
+  } catch (err) {
+    console.error("Category filter failed", err);
+    setFilteredProducts([]);
+  }
+};
+
 
   const handleFilter = () => {
     const filtered = items.filter((item) =>
       item.title?.toLowerCase().includes(query.toLowerCase())
     );
     setFilteredProducts(filtered);
-    setIsFiltered(true);
+    setIsFiltered(false);
   };
 
-  // Filters items whenever query, category, or other states change
   useEffect(() => {
-    const filtered = items.filter((item) => {
-      const matchesQuery = query
-        ? item.title?.toLowerCase().includes(query.toLowerCase())
-        : true;
-
-      const matchesCategory = selectedCategory
-        ? item.category?.toLowerCase().includes(selectedCategory.toLowerCase())
-        : true;
-
-      return matchesQuery && matchesCategory;
-    });
-
-    setFilteredProducts(filtered);
-    setIsFiltered(query || selectedCategory ? true : false);
-  }, [query, selectedCategory, items]);
-
-  // Fetches items on component mount
-  useEffect(() => {
-    if (fetchStatus.fetchDone) return; // Avoid redundant fetches
-
-    const controller = new AbortController();
-    const signal = controller.signal;
-
+    // if (fetchStatus.fetchDone) return;
     dispatch(fetchStatusActions.markFetchingStarted());
 
     getAllProducts()
       .then((res) => {
         setItems(res.data);
-        console.log(res.data);
-
         dispatch(fetchStatusActions.markFetchDone());
       })
       .catch((err) => {
         console.error("Fetch error:", err);
         dispatch(fetchStatusActions.markFetchingError());
       });
-
-    return () => controller.abort();
   }, [dispatch, fetchStatus]);
+
+  const breakpointColumnsObj = {
+    default: 4,
+    1100: 3,
+    700: 2,
+    500: 1,
+  };
 
   return (
     <div>
@@ -93,39 +120,41 @@ const FetchItems = () => {
         categories={categories}
         handleCategoryChange={handleCategoryChange}
       />
+
       <Sidebar
         categories={categories}
         handleCategoryChange={handleCategoryChange}
       />
-
-      <div className="items-container" key={Math.random()}>
-        {fetchStatus.isFetching ? (
-          <p>Loading...</p>
-        ) : fetchStatus.fetchError ? (
-          <p>Error loading items. Please try again.</p>
-        ) : isFiltered ? (
-          filteredProducts.length > 0 ? (
-            filteredProducts.map((item, index) => (
+      <div className="items-container">
+        <div className="masonry-wrapper">
+          {fetchStatus.isFetching ? (
+            <p>Loading...</p>
+          ) : fetchStatus.fetchError ? (
+            <p>Error loading items. Please try again.</p>
+          ) : isFiltered ? (
+            Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
+              filteredProducts.map((item) => (
+                <HomeItem
+                  key={item._id}
+                  item={item}
+                  onAddToCart={() => setCartCount((prev) => prev + 1)}
+                />
+              ))
+            ) : (
+              <p>No items match the selected filters.</p>
+            )
+          ) : Array.isArray(items) && items.length > 0 ? (
+            items.map((item) => (
               <HomeItem
-                key={item.id || index}
+                key={item._id}
                 item={item}
-                onAddToCart={() => handleAddToCart(item)}
+                onAddToCart={() => setCartCount((prev) => prev + 1)}
               />
             ))
           ) : (
-            <p>No items match the selected filters.</p>
-          )
-        ) : items.length > 0 ? (
-          items.map((item, index) => (
-            <HomeItem
-              uniquekey={item.id || index}
-              item={item}
-              onAddToCart={() => handleAddToCart(item)}
-            />
-          ))
-        ) : (
-          <p>No items available.</p>
-        )}
+            <p>No items available.</p>
+          )}
+        </div>
       </div>
     </div>
   );

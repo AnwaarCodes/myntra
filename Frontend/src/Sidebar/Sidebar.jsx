@@ -6,10 +6,6 @@ import "./Sidebar.css";
 const Sidebar = ({ 
   handleCategoryChange, 
   categories, 
-  // handleColorChange, 
-  // handlePriceRangeChange,
-  // colors,
-  // priceRanges 
 }) => {
   return (
     <aside className="sidebar">
@@ -17,7 +13,7 @@ const Sidebar = ({
       <div className="logo-container">
         <h1 className="heading">🛒</h1>
       </div>
-      <Category categories={categories} handleChange={handleCategoryChange} />
+      <Category categories={categories} handleCategoryChange={handleCategoryChange} />
       {/* <Price priceRanges={priceRanges} handlePriceRangeChange={handlePriceRangeChange} />
       <Colors colors={colors} handleColorChange={handleColorChange} /> */}
     </aside>

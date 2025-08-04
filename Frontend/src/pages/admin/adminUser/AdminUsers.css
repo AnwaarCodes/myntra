@@ -1,0 +1,48 @@
+.admin-users-container {
+  padding: 2rem;
+  color: #f0f0f0;
+  background: #1f1f2e;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.admin-users-heading {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  color: #00d1b2;
+  border-left: 6px solid #00d1b2;
+  padding-left: 10px;
+}
+
+.admin-users-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #2d2d3b;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.admin-users-table th,
+.admin-users-table td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #3c3c4e;
+}
+
+.admin-users-table th {
+  background-color: #3f3f54;
+  color: #00d1b2;
+  font-weight: 600;
+}
+
+.admin-users-table tr:hover {
+  background-color: #414156;
+  transition: background 0.3s ease;
+}
+
+.admin-users-empty {
+  color: #ccc;
+  font-style: italic;
+}

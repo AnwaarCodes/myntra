@@ -1,0 +1,7 @@
+@import url("../adminOrder/AdminOrders.css");
+@import url("../AdminDashboard.css");
+
+.admin-table td:nth-child(4) {
+  font-weight: bold;
+  color: #ffbc00;
+}

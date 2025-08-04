@@ -38,7 +38,7 @@ const ProductInfoPage = () => {
           <p className="product-subtitle">{product.category}</p>
           <div className="rating">
             <span className="stars">★★★★☆</span>
-            <span className="rating-count">{product.rating.rate} | {product.rating.count} Ratings</span>
+            {/* <span className="rating-count">{product.rating.rate} | {product.rating.count} Ratings</span> */}
           </div>
           <div className="price">
           <span className="current-price cur-price">₹{product.price}</span>

@@ -1,0 +1,66 @@
+@import url("../AdminDashboard.css");
+
+
+.admin-section {
+  padding: 2rem;
+  background-color: #1c1c27;
+  min-height: 100vh;
+  color: #f3f3f3;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.admin-heading {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #00ffc6;
+  border-left: 6px solid #00ffc6;
+  padding-left: 10px;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #29293d;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #3a3a50;
+}
+
+.admin-table th {
+  background-color: #33334d;
+  color: #00ffc6;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+.admin-table td {
+  color: #ddd;
+}
+
+.admin-table tr:hover {
+  background-color: #3c3c55;
+  transition: 0.3s ease;
+}
+
+.admin-section {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
