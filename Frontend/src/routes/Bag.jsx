@@ -5,6 +5,8 @@ import BagItem from "../components/BagItem";
 // from cartApi
 import { getCartItems, removeCartItem, updateCartItem } from "../api/cartApi";
 
+import "./Bag.css";
+
 const Bag = () => {
   const [cartItems, setCartItems] = useState([]);
 

@@ -1,57 +1,70 @@
-*{
-  font-family: Assistant,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+/* Sidebar base */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 100vh;
+  background-color: #fff;
+  border-right: 1px solid #eee;
+  padding: 20px 15px;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 100;
 }
-  .sidebar {
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: #888 #f1f1f1;
-    scroll-behavior: smooth;
-  }
-  
-  .sidebar::-webkit-scrollbar {
-    width: 6px;
-  }
-  
-  .sidebar::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  
-  .sidebar::-webkit-scrollbar-thumb {
-    background: #b6b4b4;
-    border-radius: 3px;
-  }
-  
-  .sidebar::-webkit-scrollbar-thumb:hover {
-    background: #9e9d9d;
+
+/* Sidebar when open */
+.sidebar.sidebar-open {
+  transform: translateX(0);
+}
+
+/* Logo */
+.logo-container {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.heading {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Toggle Button */
+.sidebar-toggle-btn {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 110;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 6px 8px;
+  display: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+  .sidebar-toggle-btn {
+    display: block;
   }
 
-.sidebar {
-    /* border: 1px solid red; */
-    width: 15%;
-    position: absolute;
-    border-right: 2px solid #e5e5e5;
-    z-index: 9;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  .sidebar {
+    width: 40%;
   }
-  @media (max-width: 768px) {
-    .sidebar {
-      width: 25%;
-      height: auto; 
-      position: relative; 
-    }
+}
+
+
+@media (min-width: 769px) {
+  .sidebar {
+    position: static;
+    transform: translateX(0);
+    height: auto;
+    width: 170px;
   }
-  
-  .logo-container {
-    margin-bottom: 1rem;
+
+  .sidebar-toggle-btn {
+    display: none;
   }
-  
-  .logo-container h1 {
-    margin-top: 1rem;
-  }
-  .heading{
-    font-weight: 700;
-    font-size: 14px;
-  }
+}

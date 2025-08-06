@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../routes/Bag.css";
 
 const BagSummary = ({ cartItems }) => {
   const totalItem = cartItems.reduce((acc, item) => acc + item.quantity, 0);

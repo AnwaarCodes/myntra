@@ -7,7 +7,11 @@ const {
   getSalesReport,
   getMonthlySales,
   addProducts,
-  getAllProducts
+  getAllProducts,
+  updateProduct,
+  deleteProduct,
+  deleteUser,
+  updateOrderStatus
 } = require("../controllers/admin.controller");
 
 router.use(auth, isAdmin); // all below are protected admin routes
@@ -15,9 +19,15 @@ router.get("/users", getAllUsers);
 router.get("/orders", getAllOrders);
 router.get("/sales", getSalesReport);
 router.get("/monthly-sales", getMonthlySales);
-// router.get("/monthly-sales", getMonthlySales);
 router.get('/products', getAllProducts);
 router.post("/products", addProducts);
-// You can add POST/PUT/DELETE for manageProducts here too
+
+//CRUD OPERATIONS
+router.put("/products/:id", updateProduct);
+router.delete("/products/:id", deleteProduct);
+router.delete("/users/:id", deleteUser);
+router.put("/orders/:id", updateOrderStatus);
+
+
 
 module.exports = router;

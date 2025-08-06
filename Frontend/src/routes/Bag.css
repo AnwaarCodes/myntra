@@ -1,0 +1,291 @@
+.bag-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.bag-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.bag-item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  min-width: 180px;
+}
+
+.bag-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.2;
+}
+
+.bag-category {
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.bag-price {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111;
+}
+
+.bag-quantity {
+  display: flex;
+  align-items: center;
+}
+
+.bag-qty-input {
+  width: 60px;
+  padding: 6px 10px;
+  text-align: center;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+}
+
+.bag-remove-btn {
+  background-color: #e53935;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.bag-remove-btn:hover {
+  background-color: #c62828;
+}
+
+/* 🔻 Tablet Screens */
+@media (max-width: 768px) {
+  .bag-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .bag-image {
+    margin-bottom: 8px;
+  }
+
+  .bag-qty-input {
+    width: 100%;
+  }
+
+  .bag-remove-btn {
+    width: 30%;
+    text-align: center;
+    margin-top: 8px;
+  }
+}
+
+/* 🔻 Mobile Screens */
+@media (max-width: 480px) {
+  .bag-item {
+    padding: 12px;
+  }
+
+  .bag-image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .bag-title {
+    font-size: 14px;
+  }
+
+  .bag-price {
+    font-size: 13px;
+  }
+
+  .bag-qty-input {
+    font-size: 13px;
+  }
+
+  .bag-remove-btn {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+
+
+
+
+
+
+
+.bag-summary {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e0e0e0;
+  min-width: 260px;
+}
+
+.bag-summary-title {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.bag-summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  font-size: 14px;
+  color: #444;
+}
+
+.bag-summary-row.discount {
+  color: #4caf50;
+  font-weight: 500;
+}
+
+.bag-summary-total {
+  font-weight: 700;
+  font-size: 16px;
+  color: #1a1a1a;
+}
+
+.bag-summary-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #ff3e6c;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.bag-summary-btn:hover {
+  background-color: #e62958;
+}
+
+/* 🔻 Tablet Screens */
+@media (max-width: 768px) {
+  .bag-summary {
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px;
+  }
+
+  .bag-summary-title {
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .bag-summary-btn {
+    font-size: 14px;
+  }
+}
+
+/* 🔻 Mobile Screens */
+@media (max-width: 480px) {
+  .bag-summary {
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .bag-summary-row {
+    font-size: 13px;
+  }
+
+  .bag-summary-total {
+    font-size: 15px;
+  }
+
+  .bag-summary-btn {
+    padding: 12px;
+    font-size: 13px;
+  }
+}
+
+
+
+
+
+
+
+
+
+.bag-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.bag-items-container {
+  flex: 1;
+  min-width: 60%;
+}
+
+.bag-summary {
+  width: 300px;
+  position: sticky;
+  top: 24px;
+}
+
+/* 🔻 Tablet screens */
+@media (max-width: 768px) {
+  .bag-page {
+    flex-direction: column;
+    gap: 24px;
+    padding: 0 16px;
+  }
+
+  .bag-items-container {
+    min-width: 100%;
+  }
+
+  .bag-summary {
+    width: 100%;
+    position: relative;
+    top: 0;
+  }
+}
+
+/* 🔻 Mobile screens */
+@media (max-width: 480px) {
+  .bag-page {
+    gap: 20px;
+  }
+
+  .bag-summary {
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+  }
+}

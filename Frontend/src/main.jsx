@@ -27,6 +27,7 @@ import AdminOrders from './pages/admin/adminOrder/AdminOrders.jsx'
 import AdminSales from './pages/admin/adminSales/AdminSales.jsx'
 import AdminDashboard from './pages/admin/AdminDashboard.jsx'
 import AdminAddProduct from './pages/admin/adminAddProduct/AdminAddProduct.jsx'
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 
 const router = createBrowserRouter([
@@ -80,10 +81,12 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Provider store={myntraStore}>
-       <WishlistProvider>
-      <RouterProvider router={router} future={{ v7_startTransition: true }} />
-       </WishlistProvider>
-    </Provider>
+     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+      <Provider store={myntraStore}>
+        <WishlistProvider>
+          <RouterProvider router={router} future={{ v7_startTransition: true }} />
+        </WishlistProvider>
+      </Provider>
+    </GoogleOAuthProvider>
   </StrictMode>
 )

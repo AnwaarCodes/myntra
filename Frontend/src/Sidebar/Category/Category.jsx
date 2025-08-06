@@ -1,19 +1,26 @@
-import "./Category.css";
+// Category.jsx
 import Input from "../../components/Input";
+import "./Category.css";
 
 function Category({ handleCategoryChange, categories }) {
   return (
-    <div className="w-40 bg-slate-600 border-2 border-black">
-      <h2 className="sidebar-title">Category</h2>
-      <div>
-        <label className="sidebar-label-container">
-          <input onChange={ handleCategoryChange} type="radio" value="" name="category" />
-          <span className="checkmark"></span>All
+    <div className="category-container">
+      <h2 className="category-title">Categories</h2>
+      <div className="category-list">
+        <label className="category-option">
+          <input
+            type="radio"
+            value=""
+            name="category"
+            onChange={handleCategoryChange}
+          />
+          <span className="checkmark"></span>
+          All
         </label>
         {categories.map((category) => (
           <Input
             key={category}
-            handleCategoryChange={ handleCategoryChange }
+            handleCategoryChange={handleCategoryChange}
             value={category}
             title={category}
             name="category"

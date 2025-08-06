@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Signup.css";
 
 export default function Signup() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   
   const handleSubmit = async (e) => {
@@ -19,95 +21,88 @@ export default function Signup() {
   };
 
   return (
-
- <section className="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center justify-center px-4 py-8">
-  <div className="w-full max-w-md bg-white rounded-2xl shadow-xl dark:bg-gray-800 dark:border dark:border-gray-700 transition-all">
-    <div className="p-8 space-y-6">
-      <h1 className="text-2xl font-bold text-center tracking-tight text-gray-900 dark:text-white">
-        Create an Account
-      </h1>
-
-      <form className="space-y-5" onSubmit={handleSubmit}>
-        {/* Full Name */}
-        <div>
-          <label
-            htmlFor="name"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-200"
-          >
-            Full Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            required
-            placeholder="John Doe"
-            className="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-primary-600 focus:border-primary-600 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-            onChange={(e) => setForm({ ...form, name: e.target.value })}
-          />
+  <div className="signup-container">
+      <div className="signup-card">
+        <div className="signup-header">
+          <h1 className="signup-title">Create Account</h1>
+          <p className="signup-subtitle">Join us today and get started</p>
         </div>
 
-        {/* Email */}
-        <div>
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-200"
-          >
-            Email Address
-          </label>
-          <input
-            type="email"
-            id="email"
-            required
-            placeholder="you@example.com"
-            className="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-primary-600 focus:border-primary-600 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
-          />
-        </div>
+        <form className="signup-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name" className="form-label">
+              Full Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              required
+              placeholder="Enter your full name"
+              className={`form-input ${loading ? 'disabled' : ''}`}
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              disabled={loading}
+            />
+          </div>
 
-        {/* Password */}
-        <div>
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-200"
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            required
-            placeholder="••••••••"
-            className="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-primary-600 focus:border-primary-600 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-            onChange={(e) => setForm({ ...form, password: e.target.value })}
-          />
-        </div>
+          <div className="form-group">
+            <label htmlFor="email" className="form-label">
+              Email Address
+            </label>
+            <input
+              type="email"
+              id="email"
+              required
+              placeholder="Enter your email"
+              className={`form-input ${loading ? 'disabled' : ''}`}
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              disabled={loading}
+            />
+          </div>
 
-        {/* Submit */}
-        <button
-          type="submit"
-          className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-semibold rounded-xl text-sm px-5 py-3 transition dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-        >
-          Create Account
-        </button>
+          <div className="form-group">
+            <label htmlFor="password" className="form-label">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              required
+              placeholder="Create a strong password"
+              className={`form-input ${loading ? 'disabled' : ''}`}
+              value={form.password}
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
+              disabled={loading}
+            />
+          </div>
 
-        {/* Already have account */}
-        <p className="text-center text-sm text-gray-500 dark:text-gray-400">
-          Already have an account?{" "}
-          <span
-            className="font-medium text-primary-600 hover:underline dark:text-primary-500 cursor-pointer"
-            onClick={() => navigate("/login")}
+          <button 
+            type="submit" 
+            className={`signup-btn ${loading ? 'loading' : ''}`}
+            disabled={loading}
           >
-            Login here
-          </span>
-        </p>
-      </form>
+            {loading ? (
+              <span className="btn-content">
+                <span className="spinner"></span>
+                Creating Account...
+              </span>
+            ) : (
+              "Create Account"
+            )}
+          </button>
+
+          <p className="login-link">
+            Already have an account?{" "}
+            <span 
+              className="link-text"
+              onClick={() => navigate("/login")}
+            >
+              Sign in
+            </span>
+          </p>
+        </form>
+      </div>
     </div>
-  </div>
-</section>
-
-
-
-
-
 )
 }

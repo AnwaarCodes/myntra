@@ -157,15 +157,25 @@ header {
   padding: 15px;
 }
 
+.main-layout {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  gap: 0;
+}
+
 .items-container {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  margin: 30px 10px 20px 230px;
+  /* width: 100%; */
+  /* width: calc(100% - 170px); */
+   flex-grow: 1;
+  overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .masonry-wrapper {
-  column-count: 4;
+  column-count: 3;
   column-gap: 20px;
 }
 
@@ -178,6 +188,9 @@ header {
   .masonry-wrapper {
     column-count: 2;
   }
+  .main-layout {
+    flex-direction: column;
+  }
 }
 @media (max-width: 480px) {
   .masonry-wrapper {
@@ -187,8 +200,8 @@ header {
 
 .item-container {
   display: inline-block;
-  width: 100%; /* IMPORTANT: Fill column width */
-  margin: 0 0 20px; /* bottom margin for spacing */
+  width: 100%; 
+  margin: 0 0 20px; 
   background-color: #fff;
   border-radius: 8px;
   overflow: hidden;

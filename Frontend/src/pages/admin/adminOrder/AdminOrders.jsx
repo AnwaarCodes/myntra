@@ -13,6 +13,17 @@ const AdminOrders = () => {
     fetchOrders();
   }, []);
 
+  const handleStatusChange = async (orderId, status) => {
+    try {
+      await api.put(`/admin/orders/${orderId}`, { status });
+      setOrders((prev) =>
+        prev.map((o) => (o._id === orderId ? { ...o, status } : o))
+      );
+    } catch (err) {
+      console.error("Status update failed", err);
+    }
+  };
+
   return (
     <div className="admin-section">
       <h2 className="admin-heading">📦 All Orders</h2>
@@ -36,6 +47,17 @@ const AdminOrders = () => {
                 <td>Rs. {o.totalPrice}</td>
                 <td>{o.status}</td>
                 <td>{new Date(o.createdAt).toLocaleDateString()}</td>
+                <td>
+                  <select
+                    value={o.status}
+                    onChange={(e) => handleStatusChange(o._id, e.target.value)}
+                    className="status-dropdown"
+                  >
+                    <option value="pending">Pending</option>
+                    <option value="shipped">Shipped</option>
+                    <option value="delivered">Delivered</option>
+                  </select>
+                </td>
               </tr>
             ))}
           </tbody>

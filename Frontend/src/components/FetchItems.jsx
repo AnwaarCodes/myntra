@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStatusActions } from "../store/fetchStatusSlice";
 import HomeItem from "./HomeItem";
-import Header from "./Header";
+import Header from "./Header/Header.jsx";
 import Sidebar from "../Sidebar/Sidebar";
 import { getAllProducts } from "../api/productAPI";
 import Masonry from "react-masonry-css";
@@ -15,6 +15,7 @@ const FetchItems = () => {
   const [cartCount, setCartCount] = useState(0);
   const [query, setQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [showSidebar, setShowSidebar] = useState(false);
 
   const fetchStatus = useSelector((state) => state.fetchStatus);
   const dispatch = useDispatch();
@@ -57,28 +58,31 @@ const FetchItems = () => {
     }
   };
 
- const handleCategoryChange = async (selected) => {
-  // const selected = e.target.value;
-  setSelectedCategory(selected);
+  const handleCategoryChange = async (selected) => {
+    // const selected = e.target.value;
+    setSelectedCategory(selected);
 
-  // ❌ Agar empty hai, to saare products dikhao
-  if (selected === "") {
-    setIsFiltered(false);
-    setFilteredProducts(items);
-    return;
-  }
+    // ❌ Agar empty hai, to saare products dikhao
+    if (selected === "") {
+      setIsFiltered(false);
+      setFilteredProducts(items);
+      return;
+    }
 
-  // ✅ Backend se filter karo
-  try {
-    const res = await axios.get(`http://localhost:5000/api/products?search=${encodeURIComponent(selected)}`);
-    setFilteredProducts(res.data);
-    setIsFiltered(true);
-  } catch (err) {
-    console.error("Category filter failed", err);
-    setFilteredProducts([]);
-  }
-};
-
+    // ✅ Backend se filter karo
+    try {
+      const res = await axios.get(
+        `http://localhost:5000/api/products?search=${encodeURIComponent(
+          selected
+        )}`
+      );
+      setFilteredProducts(res.data);
+      setIsFiltered(true);
+    } catch (err) {
+      console.error("Category filter failed", err);
+      setFilteredProducts([]);
+    }
+  };
 
   const handleFilter = () => {
     const filtered = items.filter((item) =>
@@ -111,7 +115,7 @@ const FetchItems = () => {
   };
 
   return (
-    <div>
+    <div >
       <Header
         handleFilter={handleFilter}
         cartCount={cartCount}
@@ -121,19 +125,33 @@ const FetchItems = () => {
         handleCategoryChange={handleCategoryChange}
       />
 
-      <Sidebar
-        categories={categories}
-        handleCategoryChange={handleCategoryChange}
-      />
-      <div className="items-container">
-        <div className="masonry-wrapper">
-          {fetchStatus.isFetching ? (
-            <p>Loading...</p>
-          ) : fetchStatus.fetchError ? (
-            <p>Error loading items. Please try again.</p>
-          ) : isFiltered ? (
-            Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
-              filteredProducts.map((item) => (
+      <div className="main-layout">
+        <Sidebar
+          categories={categories}
+          handleCategoryChange={handleCategoryChange}
+          showSidebar={showSidebar}
+          setShowSidebar={setShowSidebar}
+        />
+        <div className="items-container">
+          <div className="masonry-wrapper">
+            {fetchStatus.isFetching ? (
+              <p>Loading...</p>
+            ) : fetchStatus.fetchError ? (
+              <p>Error loading items. Please try again.</p>
+            ) : isFiltered ? (
+              Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
+                filteredProducts.map((item) => (
+                  <HomeItem
+                    key={item._id}
+                    item={item}
+                    onAddToCart={() => setCartCount((prev) => prev + 1)}
+                  />
+                ))
+              ) : (
+                <p>No items match the selected filters.</p>
+              )
+            ) : Array.isArray(items) && items.length > 0 ? (
+              items.map((item) => (
                 <HomeItem
                   key={item._id}
                   item={item}
@@ -141,19 +159,9 @@ const FetchItems = () => {
                 />
               ))
             ) : (
-              <p>No items match the selected filters.</p>
-            )
-          ) : Array.isArray(items) && items.length > 0 ? (
-            items.map((item) => (
-              <HomeItem
-                key={item._id}
-                item={item}
-                onAddToCart={() => setCartCount((prev) => prev + 1)}
-              />
-            ))
-          ) : (
-            <p>No items available.</p>
-          )}
+              <p>No items available.</p>
+            )}
+          </div>
         </div>
       </div>
     </div>

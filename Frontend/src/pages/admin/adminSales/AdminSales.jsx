@@ -7,14 +7,21 @@ import {
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
 } from "chart.js";
 import api from "../../../api/api";
 import "../AdminDashboard.css";
 import "./AdminSales.css";
 
 // Register Chart.js components
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const AdminSales = () => {
   const [sales, setSales] = useState({ totalOrders: 0, totalRevenue: 0 });
@@ -43,61 +50,75 @@ const AdminSales = () => {
     fetchMonthlySales();
   }, []);
 
- const chartData = {
-  labels: monthlySales.map((s) => s.month),
-  datasets: [
-    {
-      label: "Revenue",
-      data: monthlySales.map((s) => s.revenue),
-      backgroundColor: (context) => {
-        const bg = context.chart.ctx.createLinearGradient(0, 0, 0, 400);
-        bg.addColorStop(0, '#00c6ff');
-        bg.addColorStop(1, '#0072ff');
-        return bg;
+  const chartData = {
+    labels: monthlySales.map((s) => s.month),
+    datasets: [
+      {
+        label: "Revenue",
+        data: monthlySales.map((s) => s.revenue),
+        backgroundColor: (context) => {
+          const bg = context.chart.ctx.createLinearGradient(0, 0, 0, 400);
+          bg.addColorStop(0, "#00c6ff");
+          bg.addColorStop(1, "#0072ff");
+          return bg;
+        },
+        borderRadius: 5,
       },
-      borderRadius: 5,
-    },
-  ],
-};
-
+    ],
+  };
 
   const chartOptions = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "bottom",
-      labels: {
-        color: "#444", // 👈 Text color based on background
-        font: { size: 14 }
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "bottom",
+        labels: {
+          color: "#444", // 👈 Text color based on background
+          font: { size: 14 },
+        },
+      },
+      title: {
+        display: true,
+        text: "📈 Monthly Sales Revenue",
+        color: "#2c3e50", // 👈 Title color
+        font: { size: 18 },
       },
     },
-    title: {
-      display: true,
-      text: "📈 Monthly Sales Revenue",
-      color: "#2c3e50", // 👈 Title color
-      font: { size: 18 },
-    },
-  },
-  scales: {
-    x: {
-      ticks: {
-        color: "#333", // X-axis labels
+    scales: {
+      x: {
+        ticks: {
+          color: "#333", // X-axis labels
+        },
+        grid: {
+          color: "#eee", // X-axis grid line
+        },
       },
-      grid: {
-        color: "#eee", // X-axis grid line
-      },
-    },
-    y: {
-      ticks: {
-        color: "#333",
-      },
-      grid: {
-        color: "#eee",
+      y: {
+        ticks: {
+          color: "#333",
+        },
+        grid: {
+          color: "#eee",
+        },
       },
     },
-  },
-};
+  };
 
+  const exportToCSV = () => {
+    const csvContent =
+      "data:text/csv;charset=utf-8," +
+      [
+        "Month,Revenue",
+        ...monthlySales.map((s) => `${s.month},${s.revenue}`),
+      ].join("\n");
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "monthly_sales.csv");
+    document.body.appendChild(link);
+    link.click();
+  };
 
   return (
     <div className="admin-sales-container">
@@ -117,6 +138,10 @@ const AdminSales = () => {
       <div className="chart-container">
         <Bar data={chartData} options={chartOptions} />
       </div>
+
+      <button onClick={exportToCSV} className="export-btn">
+        ⬇️ Export CSV
+      </button>
 
       <h3 className="table-title">📅Monthly Breakdown</h3>
       <table className="admin-table">

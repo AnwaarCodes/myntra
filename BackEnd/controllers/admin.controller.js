@@ -96,11 +96,62 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+
+//CRUD ON PRODUCTS
+const updateProduct = async (req, res) => {
+  try {
+    const updated = await Product.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    res.json(updated);
+  } catch (err) {
+    res.status(500).json({ message: "Update failed", error: err.message });
+  }
+};
+
+const deleteProduct = async (req, res) => {
+  try {
+    await Product.findByIdAndDelete(req.params.id);
+    res.json({ message: "Product deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ message: "Delete failed", error: err.message });
+  }
+};
+
+//CRUD ON USERS
+const deleteUser = async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.params.id);
+    res.json({ message: "User deleted" });
+  } catch (err) {
+    res.status(500).json({ message: "Failed to delete user", error: err.message });
+  }
+};
+
+//Update Status
+const updateOrderStatus = async (req, res) => {
+  try {
+    const order = await Order.findByIdAndUpdate(req.params.id, {
+      status: req.body.status,
+    }, { new: true });
+
+    res.json(order);
+  } catch (err) {
+    res.status(500).json({ message: "Failed to update order", error: err.message });
+  }
+};
+
+
+
 module.exports = {
   getAllUsers,
   getAllOrders,
   getSalesReport,
   getMonthlySales,
   addProducts,
-  getAllProducts
+  getAllProducts,
+  updateProduct,
+  deleteProduct,
+  deleteUser,
+  updateOrderStatus
 };

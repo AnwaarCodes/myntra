@@ -64,3 +64,49 @@
     transform: translateY(0);
   }
 }
+
+
+.status-dropdown {
+  padding: 8px 14px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  color: #333;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-dropdown:hover {
+  background-color: #f0f0f0;
+}
+
+.status-dropdown:focus {
+  border-color: #4f6ef7;
+  box-shadow: 0 0 0 2px rgba(79, 110, 247, 0.2);
+}
+
+/* Optional: Color coding the options */
+.status-dropdown option[value="pending"] {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-dropdown option[value="shipped"] {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.status-dropdown option[value="delivered"] {
+  background-color: #d4edda;
+  color: #155724;
+}

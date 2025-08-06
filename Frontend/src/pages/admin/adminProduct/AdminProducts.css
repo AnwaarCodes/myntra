@@ -5,3 +5,80 @@
   font-weight: bold;
   color: #ffbc00;
 }
+
+/* Base Button */
+.btn {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding: 8px 18px;
+  margin: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid transparent;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1);
+}
+
+/* ===== EDIT BUTTON ===== */
+.edit-btn {
+  background: linear-gradient(135deg, #4f6ef7, #667eea); /* Indigo/blue tones */
+  color: #fff;
+  border-color: #4f6ef7;
+  box-shadow: 0 4px 10px rgba(79, 110, 247, 0.2);
+}
+
+.edit-btn:hover {
+  background: linear-gradient(135deg, #3b5bdb, #4f6ef7);
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(79, 110, 247, 0.3);
+  animation: pulse 0.3s ease;
+}
+
+/* ===== DELETE BUTTON ===== */
+.delete-btn {
+  background: linear-gradient(135deg, #3c3c3c, #5a1e1e); /* Deep gray to subtle red */
+  color: #fff;
+  border-color: #5a1e1e;
+  box-shadow: 0 4px 10px rgba(90, 30, 30, 0.2);
+}
+
+.delete-btn:hover {
+  background: linear-gradient(135deg, #2e2e2e, #811c1c);
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(129, 28, 28, 0.3);
+  animation: shake 0.3s ease;
+}
+
+/* === Animations === */
+@keyframes pulse {
+  0% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(1.07);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0px);
+  }
+  25% {
+    transform: translateX(-2px);
+  }
+  50% {
+    transform: translateX(2px);
+  }
+  75% {
+    transform: translateX(-2px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+

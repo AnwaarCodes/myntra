@@ -1,22 +1,44 @@
+import React, { useState, useEffect } from "react";
 import Category from "./Category/Category";
-import Colors from "./Colors/Colors";
-import Price from "./Price/Price";
+import { IoMenu, IoClose } from "react-icons/io5";
 import "./Sidebar.css";
 
-const Sidebar = ({ 
-  handleCategoryChange, 
-  categories, 
-}) => {
+const Sidebar = ({ categories, handleCategoryChange }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Auto-close sidebar on desktop screen resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setIsOpen(true);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <aside className="sidebar">
-      {/* Sidebar Logo */}
-      <div className="logo-container">
-        <h1 className="heading">🛒</h1>
-      </div>
-      <Category categories={categories} handleCategoryChange={handleCategoryChange} />
-      {/* <Price priceRanges={priceRanges} handlePriceRangeChange={handlePriceRangeChange} />
-      <Colors colors={colors} handleColorChange={handleColorChange} /> */}
-    </aside>
+    <>
+      {/* Toggle Button - small screens only */}
+      <button
+        className="sidebar-toggle-btn"
+        onClick={() => setIsOpen((prev) => !prev)}
+      >
+        {isOpen ? <IoClose size={22} /> : <IoMenu size={22} />}
+      </button>
+
+      {/* Sidebar */}
+      <aside className={`sidebar ${isOpen ? "sidebar-open" : ""}`}>
+        <div className="logo-container">
+          <h1 className="heading">🛒</h1>
+        </div>
+        <Category
+          categories={categories}
+          handleCategoryChange={handleCategoryChange}
+        />
+      </aside>
+    </>
   );
 };
 
